@@ -1,1 +1,42 @@
 /* CSS */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  width: '100%';
+}
+
+#header {
+  width: 100%;
+  background-color: #ccc;
+  padding: 0.5em;
+}
+
+#files-window {
+  width: 100%;
+  background-color: #efefef;
+  min-height: 40%;
+}
+
+#files-window ul {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#files-window ul li {
+  width: 100%;
+  padding: 0.5em;
+  list-style-type: none;
+}
+
+#files-window ul li a {
+  width: 100%;
+  height: 100%;
+}
+
+#files-window ul li:hover {
+  background-color: #ddd;
+}
