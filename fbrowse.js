@@ -16,7 +16,6 @@ function init() {
     $("#up-button").on('click', upALevel);
 }
 
-
 function upALevel() {
     var pathArray = CURRENT_PATH.split('/');
     pathArray.splice(-1,1);
@@ -46,16 +45,7 @@ function buildFileList(files) {
 
     for(i = 0; i < files.length; i++) {
         var file = files[i];
-        var fileLi = $('<li/>');
-        var link = $("<a></a>");
-
-        link.text(file.name);
-        if(file.isFolder) {
-            link.attr('is-folder', true);
-            link.attr('folder-name', file.name);
-        }
-
-        fileLi.append(link);
+        var fileLi = generateListItem(files[i]);
         filesUl.append(fileLi);
     };
 
@@ -63,6 +53,20 @@ function buildFileList(files) {
 
     $("#files-window").empty();
     $("#files-window").append(filesUl);
+}
+
+function generateListItem(data) {
+    var fileLi = $('<li/>');
+    var link = $("<a></a>");
+
+    link.text(data.name);
+    if(data.isFolder) {
+        link.attr('is-folder', true);
+        link.attr('folder-name', data.name);
+    }
+
+    fileLi.append(link);
+    return fileLi;
 }
 
 function navigateIntoFolder(e) {
@@ -82,30 +86,3 @@ function navigateIntoFolder(e) {
         navigateToPath(newPath);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-$("button").on("click", function()
-{
-    filedata.getFilesForPath("/", function(err, files)
-    {
-    	if(err)
-    	{
-    		$("pre").text("ERROR: "+JSON.stringify(err));
-    	}
-    	else
-    	{
-    		$("pre").text(JSON.stringify(files, null, "\t"));
-    	}
-    });
-});
