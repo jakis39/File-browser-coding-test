@@ -2,15 +2,21 @@
 <html>
 	<head>
 		<link href="fbrowse.css" rel="stylesheet">
+		<link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
 
 		<div id="container">
 
 			<header>
-			<button id="up-button">^</button>
-				<button id="go-button">GO</button>
-				<span id="spann"><input type="text" id="path-box" /></span>
+				<div class="title-container">
+					<span class="title">File Browser</span>
+				</div>
+				<div class="navigation-container">
+					<button id="up-button" class="nav-button"><img src="assets/images/Up-48.png" class="nav-button-icon"/></button>
+					<button id="go-button" class="nav-button">GO</button>
+					<span class="text-box-span"><input type="text" id="path-box" /></span>
+				</div>
 			</header>
 
 			<div id="files-window">

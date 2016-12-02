@@ -9,6 +9,10 @@ body {
   font-family: sans-serif;
 }
 
+.clearfix {
+  clear: both;
+}
+
 #container {
   width: auto;
   height: 100%;
@@ -19,22 +23,59 @@ body {
 header {
   width: auto;
   padding: 0.5em;
-  background-color: #eee;
-  border-bottom: 1px solid #ccc;
+  background-color: #8BC34A;
+  border-bottom: 1px solid #689F38;
+  overflow: auto;
+}
+
+.title-container {
+  padding: 0.5em;
+}
+
+.title {
+  font-size: 1.1em;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  min-width: 2.7em;
+  min-height: 2.7em;
+  outline: none;
+}
+
+.nav-button:hover {
+  background-color: #689F38;
 }
 
 #up-button {
   float: left;
 }
 
-#spann {
+.nav-button-icon {
+  max-height: 1.2em;
+}
+
+.text-box-span {
   display: block;
   overflow: hidden;
-  padding: 0 1em 0 0.3em;
+  padding: 0 1em 0 0.5em;
 }
 
 #path-box {
   width: 100%;
+  width: 100%;
+  line-height: 2em;
+  background: none;
+  border: none;
+  font-size: 0.9em;
+  color: #333;
+}
+
+#path-box:focus {
+  outline: none;
+  background-color: #DCEDC8;
+  //border-bottom: 1px solid #689F38;
 }
 
 #go-button {
@@ -84,4 +125,8 @@ footer {
 
 .log-container {
   background-color: #333;
+}
+
+.text-red {
+  color: red;
 }
