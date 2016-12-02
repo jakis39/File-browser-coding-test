@@ -1,6 +1,13 @@
 /* JavaScript */
 
 var CURRENT_PATH;
+var ICON_PATH = 'assets/images/';
+var ICON_NAMES = {
+    'folder' : 'Folder-48.png',
+    'file'   : 'File-48.png',
+    'audio'  : 'Audio-File-48.png',
+    'video'  : 'Video-File-48.png'
+}
 init();
 
 
@@ -58,15 +65,62 @@ function buildFileList(files) {
 function generateListItem(data) {
     var fileLi = $('<li/>');
     var link = $("<a></a>");
+    var icon = determineIconAsset(data.isFolder, data.name);
+    link.append($('<img src="' + icon + '" class="file-icon" />'));
+    link.append($('<span class="file-name">' + data.name + '</span>'));
 
-    link.text(data.name);
     if(data.isFolder) {
         link.attr('is-folder', true);
         link.attr('folder-name', data.name);
     }
+    else if (data.size) {
+        var formattedSize = formatFileSize(data.size);
+        link.append($('<span class="file-size">' + formattedSize + '</span>'));
+    }
 
     fileLi.append(link);
     return fileLi;
+}
+
+function determineIconAsset(isFolder, filename) {
+    if (isFolder) {
+        return ICON_PATH + ICON_NAMES.folder;
+    }
+    else {
+        var nameParts = filename.split('.');
+        var ext = nameParts[nameParts.length - 1];
+        var iconName;
+        switch (ext) {
+            case "mp3":
+                iconName = ICON_NAMES.audio;
+                break;
+            case "mp4":
+                iconName = ICON_NAMES.video;
+                break;
+            default:
+                iconName = ICON_NAMES.file;
+                break;
+        }
+        return ICON_PATH + iconName;
+    }
+}
+
+function formatFileSize(size) {
+    var suffix;
+    if (size < 1048576) {
+        size = size / 1024;
+        suffix = " KB";
+    }
+    else if (size < 1073741824) {
+        size = size / 1048576;
+        suffix = " MB";
+    }
+    else {
+        size = size / 1073741824;
+        suffix = " GB";
+    }
+    size = Math.round(size * 100) / 100
+    return size + suffix;
 }
 
 function navigateIntoFolder(e) {
