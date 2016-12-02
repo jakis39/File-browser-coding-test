@@ -1,58 +1,89 @@
 /* JavaScript */
 
-/*
-	This is just some sample code to show you how to use the
-	filedata API and an event handler. Feel free to start fresh!
-*/
+var CURRENT_PATH;
+init();
 
-var CURRENT_PATH = "/";
 
-navigateToPath(CURRENT_PATH);
+function init() {
+    navigateToPath('/');
 
+    $("#go-button").on('click', function() {
+        var path = $("#path-box").val();
+        //TODO: path validation ?
+        navigateToPath(path);
+    });
+
+    $("#up-button").on('click', upALevel);
+}
+
+
+function upALevel() {
+    var pathArray = CURRENT_PATH.split('/');
+    pathArray.splice(-1,1);
+    var newPath = pathArray.join('/');
+    if (newPath == '') {
+        newPath = '/';
+    }
+    navigateToPath(newPath);
+}
 
 function navigateToPath(path) {
-    filedata.getFilesForPath(path, function(err, files)
-    {
-        console.log(err);
-        console.log(files);
-        console.log(files[0]);
-        console.log(files[0].name);
-        if(err)
-        {
+    filedata.getFilesForPath(path, function(err, files) {
+        if(err) {
             $("#log-output").text("ERROR: " + JSON.stringify(err));
         }
-        else
-        {
+        else {
+            CURRENT_PATH = path;
             buildFileList(files);
-            $("#path-box").val(path);
+            $("#path-box").val(CURRENT_PATH);
+            $("#log-output").text('');
         }
     });
 }
 
 function buildFileList(files) {
     var filesUl = $('<ul/>');
+
     for(i = 0; i < files.length; i++) {
         var file = files[i];
         var fileLi = $('<li/>');
+        var link = $("<a></a>");
 
-        var link = $("<a/>");
-
-        console.log(file);
-        console.log(file.name);
         link.text(file.name);
+        if(file.isFolder) {
+            link.attr('is-folder', true);
+            link.attr('folder-name', file.name);
+        }
 
         fileLi.append(link);
         filesUl.append(fileLi);
     };
+
+    filesUl.on('click', "a", navigateIntoFolder);
+
     $("#files-window").empty();
     $("#files-window").append(filesUl);
 }
 
-$("#go-button").on('click', function() {
-    var path = $("#path-box").val();
-    console.log(path);
-    navigateToPath(path);
-});
+function navigateIntoFolder(e) {
+    if(!e.target) {
+        return;
+    }
+    var folderLink = $(e.target);
+    if(folderLink.attr('is-folder')) {
+        var newPath = CURRENT_PATH;
+        var folder = folderLink.attr('folder-name');
+        if(newPath == '/') {
+            newPath += folder;
+        }
+        else {
+            newPath += '/' + folder
+        }
+        navigateToPath(newPath);
+    }
+}
+
+
 
 
 

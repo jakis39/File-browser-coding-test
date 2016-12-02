@@ -1,42 +1,87 @@
 /* CSS */
+html {
+
+}
 body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+#container {
+  width: auto;
+  height: 100%;
   margin: 0;
   padding: 0;
 }
 
-#container {
-  width: '100%';
+header {
+  width: auto;
+  padding: 0.5em;
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
 }
 
-#header {
+#up-button {
+  float: left;
+}
+
+#spann {
+  display: block;
+  overflow: hidden;
+  padding: 0 1em 0 0.3em;
+}
+
+#path-box {
   width: 100%;
-  background-color: #ccc;
-  padding: 0.5em;
+}
+
+#go-button {
+  float: right;
 }
 
 #files-window {
-  width: 100%;
-  background-color: #efefef;
+  width: auto;
+  background-color: #fff;
   min-height: 40%;
+  margin: 0.5em;
+  border: 1px solid #ccc;
 }
 
 #files-window ul {
-  width: 100%;
+  width: auto;
   padding: 0;
   margin: 0;
 }
 
 #files-window ul li {
-  width: 100%;
-  padding: 0.5em;
+  width: auto;
   list-style-type: none;
+  border-bottom: 1px solid #ccc;
+}
+
+#files-window ul li:last-child {
+  border:none;
 }
 
 #files-window ul li a {
-  width: 100%;
+  display: block;
+  width: auto;
   height: 100%;
+  padding: 0.5em;
 }
 
-#files-window ul li:hover {
-  background-color: #ddd;
+#files-window ul li a:hover {
+  background-color: #eee;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.log-container {
+  background-color: #333;
 }
