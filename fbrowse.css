@@ -13,8 +13,10 @@ body {
 #container {
   width: auto;
   height: 100%;
-  margin: 0;
   padding: 0;
+  margin: 1em;
+  border: 1px solid #ccc;
+  overflow: hidden;
 }
 
 /* Header */
@@ -22,17 +24,30 @@ body {
 header {
   width: auto;
   padding: 0.5em;
-  background-color: #8BC34A;
-  border-bottom: 1px solid #689F38;
+  background-color: #E91E63;
+  border-bottom: 1px solid #C2185B;
   overflow: auto;
+  color: #eee;    
+  box-shadow: 0 0px 6px 0px #aaa;
 }
 
 .title-container {
   padding: 0.5em;
+  overflow: auto;
+}
+
+.title-icon {
+  max-height: 1.6em;
+  float: left;
+  margin-top: 0.2em;
 }
 
 .title {
   font-size: 1.1em;
+  font-weight: bold;
+  float: left;
+  line-height: 2em;
+  margin-left: 0.5em;
 }
 
 .nav-button {
@@ -41,10 +56,11 @@ header {
   min-width: 2.7em;
   min-height: 2.7em;
   outline: none;
+  border-radius: 1.35em;
 }
 
 .nav-button:hover {
-  background-color: #689F38;
+  background-color: #C2185B;
 }
 
 #up-button {
@@ -68,27 +84,25 @@ header {
   background: none;
   border: none;
   font-size: 0.9em;
-  color: #333;
+  color: #eee;
 }
 
 #path-box:focus {
   outline: none;
-  background-color: #DCEDC8;
-  //border-bottom: 1px solid #689F38;
+  background-color: #C2185B;
 }
 
 #go-button {
   float: right;
+  color: #eee;
 }
 
 /* Files window */
 
 #files-window {
   width: auto;
-  background-color: #fff;
   min-height: 40%;
   margin: 0.5em;
-  border: 1px solid #ccc;
 }
 
 #files-window ul {
@@ -114,16 +128,16 @@ header {
   padding: 0.5em;
 }
 
+#files-window ul li a:hover {
+  background-color: #eee;
+}
+
 #files-window ul li a * {
   pointer-events: none;
 }
 
 #files-window ul li a span {
   line-height: 2em;
-}
-
-#files-window ul li a:hover {
-  background-color: #eee;
 }
 
 .file-icon {
@@ -138,16 +152,4 @@ header {
 .file-size {
   float: right;
   color: #aaa;
-}
-
-/* Footer */
-
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.log-container {
-  background-color: #333;
 }

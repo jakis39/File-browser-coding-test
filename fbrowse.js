@@ -36,7 +36,7 @@ function upALevel() {
 function navigateToPath(path) {
     filedata.getFilesForPath(path, function(err, files) {
         if(err) {
-            $("#log-output").text("ERROR: " + JSON.stringify(err));
+            console.log("ERROR: " + JSON.stringify(err));
         }
         else {
             CURRENT_PATH = path;
