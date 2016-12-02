@@ -8,22 +8,19 @@ var ICON_NAMES = {
     'audio'  : 'Audio-File-48.png',
     'video'  : 'Video-File-48.png'
 }
-init();
 
+init();
 
 function init() {
     navigateToPath('/');
-
-    $("#go-button").on('click', function() {
-        var path = $("#path-box").val();
-        //TODO: path validation ?
-        navigateToPath(path);
-    });
-
     $("#up-button").on('click', upALevel);
+    $("#breadcrumb-container").on('click','a', navigateToCrumb);
 }
 
 function upALevel() {
+    if(CURRENT_PATH == '/') {
+        return;
+    }
     var pathArray = CURRENT_PATH.split('/');
     pathArray.splice(-1,1);
     var newPath = pathArray.join('/');
@@ -34,24 +31,79 @@ function upALevel() {
 }
 
 function navigateToPath(path) {
+    if(path == CURRENT_PATH) {
+        return;
+    }
     filedata.getFilesForPath(path, function(err, files) {
         if(err) {
             console.log("ERROR: " + JSON.stringify(err));
         }
         else {
+            console.log('success');
             CURRENT_PATH = path;
             buildFileList(files);
-            $("#path-box").val(CURRENT_PATH);
+            buildBreadcrumb();
             $("#log-output").text('');
         }
     });
+}
+
+function buildBreadcrumb() {
+    var container = $("#breadcrumb-container");
+    container.empty();
+
+    if(CURRENT_PATH == '/') {
+        var newCrumb = createCrumb(0, '/');
+        container.append(newCrumb);
+        return;
+    }
+    var pathArray = CURRENT_PATH.split('/');
+
+    for(i = 0; i < pathArray.length; i++) {
+        var crumbText = pathArray[i] ? pathArray[i] : '/';
+        var newCrumb = createCrumb(i, crumbText);
+        container.append(newCrumb);
+
+        if(i < pathArray.length -1) {
+            var divider = $('<span/>');
+            divider.addClass('crumb-divider');
+            divider.append($('<img src="assets/images/Chevron-Right-48.png"/>'));
+            container.append(divider);
+        }
+    }
+}
+
+function createCrumb(level, text) {
+    var newCrumb = $("<a/>");
+    newCrumb.addClass('breadcrumb-link');
+    newCrumb.attr('level', level);
+    newCrumb.text(text);
+    return newCrumb;
+}
+
+function navigateToCrumb(e) {
+    if(!$(e.target).attr('level')) {
+        return;
+    }
+    var level = $(e.target).attr('level');
+
+    if(level == 0) {
+        navigateToPath('/');
+        return;
+    }
+
+    var newPath = '';
+    var pathArray = CURRENT_PATH.split('/');
+    for(i=1; i <= level; i++) {
+        newPath += '/' + pathArray[i];
+    }
+    navigateToPath(newPath);
 }
 
 function buildFileList(files) {
     var filesUl = $('<ul/>');
 
     for(i = 0; i < files.length; i++) {
-        var file = files[i];
         var fileLi = generateListItem(files[i]);
         filesUl.append(fileLi);
     };

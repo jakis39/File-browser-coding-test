@@ -57,6 +57,7 @@ header {
   min-height: 2.7em;
   outline: none;
   border-radius: 1.35em;
+  cursor: pointer;
 }
 
 .nav-button:hover {
@@ -71,30 +72,32 @@ header {
   max-height: 1.2em;
 }
 
-.text-box-span {
-  display: block;
-  overflow: hidden;
-  padding: 0 1em 0 0.5em;
+#breadcrumb-container {
 }
 
-#path-box {
-  width: 100%;
-  width: 100%;
+.breadcrumb-link {
+  padding: 0 0.7em 0 0.7em;
+  margin: 0.2em;
+  cursor: pointer;
+  height: 2em;
   line-height: 2em;
-  background: none;
-  border: none;
-  font-size: 0.9em;
-  color: #eee;
+  display: block;
+  float: left;
 }
 
-#path-box:focus {
-  outline: none;
+.breadcrumb-link:hover {
   background-color: #C2185B;
 }
 
-#go-button {
-  float: right;
-  color: #eee;
+.crumb-divider {
+  height: 2em;
+  display: block;
+  float: left;
+}
+
+.crumb-divider img {
+  width: 0.9em;
+  margin-top: 0.6em;
 }
 
 /* Files window */
@@ -126,6 +129,7 @@ header {
   width: auto;
   height: 100%;
   padding: 0.5em;
+  cursor: pointer;
 }
 
 #files-window ul li a:hover {
