@@ -72,17 +72,15 @@ header {
   max-height: 1.2em;
 }
 
-#breadcrumb-container {
-}
-
 .breadcrumb-link {
+  display: block;
+  height: 2em;
   padding: 0 0.7em 0 0.7em;
   margin: 0.2em;
   cursor: pointer;
-  height: 2em;
   line-height: 2em;
-  display: block;
   float: left;
+  border-radius: 1em;
 }
 
 .breadcrumb-link:hover {
@@ -114,17 +112,17 @@ header {
   margin: 0;
 }
 
-#files-window ul li {
+.file-row {
   width: auto;
   list-style-type: none;
   border-bottom: 1px solid #ccc;
 }
 
-#files-window ul li:last-child {
+.file-row:last-child {
   border:none;
 }
 
-#files-window ul li a {
+.file-row a {
   display: block;
   width: auto;
   height: 100%;
@@ -132,15 +130,18 @@ header {
   cursor: pointer;
 }
 
-#files-window ul li a:hover {
+.file-row a:hover {
   background-color: #eee;
 }
+.file-row a:active {
+  background-color: #ddd;
+}
 
-#files-window ul li a * {
+.file-row a * {
   pointer-events: none;
 }
 
-#files-window ul li a span {
+.file-row a span {
   line-height: 2em;
 }
 

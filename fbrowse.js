@@ -1,4 +1,3 @@
-/* JavaScript */
 
 var CURRENT_PATH;
 var ICON_PATH = 'assets/images/';
@@ -39,21 +38,20 @@ function navigateToPath(path) {
             console.log("ERROR: " + JSON.stringify(err));
         }
         else {
-            console.log('success');
             CURRENT_PATH = path;
             buildFileList(files);
-            buildBreadcrumb();
+            buildBreadcrumbNav();
             $("#log-output").text('');
         }
     });
 }
 
-function buildBreadcrumb() {
+function buildBreadcrumbNav() {
     var container = $("#breadcrumb-container");
     container.empty();
 
     if(CURRENT_PATH == '/') {
-        var newCrumb = createCrumb(0, '/');
+        var newCrumb = createCrumbLink(0, '/');
         container.append(newCrumb);
         return;
     }
@@ -61,7 +59,7 @@ function buildBreadcrumb() {
 
     for(i = 0; i < pathArray.length; i++) {
         var crumbText = pathArray[i] ? pathArray[i] : '/';
-        var newCrumb = createCrumb(i, crumbText);
+        var newCrumb = createCrumbLink(i, crumbText);
         container.append(newCrumb);
 
         if(i < pathArray.length -1) {
@@ -73,7 +71,7 @@ function buildBreadcrumb() {
     }
 }
 
-function createCrumb(level, text) {
+function createCrumbLink(level, text) {
     var newCrumb = $("<a/>");
     newCrumb.addClass('breadcrumb-link');
     newCrumb.attr('level', level);
@@ -116,6 +114,7 @@ function buildFileList(files) {
 
 function generateListItem(data) {
     var fileLi = $('<li/>');
+    fileLi.addClass('file-row');
     var link = $("<a></a>");
     var icon = determineIconAsset(data.isFolder, data.name);
     link.append($('<img src="' + icon + '" class="file-icon" />'));
