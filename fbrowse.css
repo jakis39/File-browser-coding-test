@@ -1,7 +1,5 @@
 /* CSS */
-html {
 
-}
 body {
   margin: 0;
   padding: 0;
@@ -51,12 +49,7 @@ h1 {
 }
 
 .nav-button {
-  background: none;
-  border: none;
-  min-width: 2.7em;
-  min-height: 2.7em;
-  outline: none;
-  border-radius: 1.35em;
+  float: left;
   cursor: pointer;
 }
 
@@ -64,8 +57,13 @@ h1 {
   background-color: #C2185B;
 }
 
-#up-button {
-  float: left;
+.up-button {
+  background: none;
+  border: none;
+  min-width: 2.7em;
+  min-height: 2.7em;
+  outline: none;
+  border-radius: 1.35em;
 }
 
 .nav-button-icon {
@@ -82,14 +80,8 @@ h1 {
   height: 2em;
   padding: 0 0.7em 0 0.7em;
   margin: 0.2em;
-  cursor: pointer;
   line-height: 2em;
-  float: left;
   border-radius: 1em;
-}
-
-.breadcrumb-link:hover {
-  background-color: #C2185B;
 }
 
 .crumb-divider {
@@ -133,6 +125,7 @@ h1 {
   height: 100%;
   padding: 0.5em;
   cursor: pointer;
+  overflow: auto;
 }
 
 .file-row a:hover {
@@ -154,11 +147,16 @@ h1 {
   max-height: 1.5em;
   vertical-align: middle;
   margin-left: 0.1em;
+  float:left;
 }
 
 .file-name {
   margin-left: 1em;
   line-height: 2em;
+  float: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .file-size {
@@ -169,8 +167,8 @@ h1 {
 
 /* Responsive rules */
 
-@media screen and (max-width: 420px),
-  screen and (max-height: 420px) {
+@media screen and (max-width: 440px),
+  screen and (max-height: 440px) {
 
   #container {
     margin: 0;
@@ -180,21 +178,12 @@ h1 {
   /* Files window */
 
   .file-row a {
-    overflow: auto;
     padding: 0.7em 0.3em 0.6em 0.3em;
-  }
-
-  .file-icon {
-    float:left;
   }
 
   .file-name {
     margin-left: 0.6em;
-    float: left;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     width: 85%;
-    overflow: hidden;
   }
 
   .file-size {

@@ -5,7 +5,8 @@ var ICON_NAMES = {
     'folder' : 'Folder-48.png',
     'file'   : 'File-48.png',
     'audio'  : 'Audio-File-48.png',
-    'video'  : 'Video-File-48.png'
+    'video'  : 'Video-File-48.png',
+    'chevron': 'Chevron-Right-48.png'
 }
 
 init();
@@ -63,28 +64,27 @@ function buildBreadcrumbNav() {
         container.append(newCrumb);
 
         if(i < pathArray.length -1) {
-            var divider = $('<span/>');
-            divider.addClass('crumb-divider');
-            divider.append($('<img src="assets/images/Chevron-Right-48.png"/>'));
+            var divider = $('<span/>')
+                .addClass('crumb-divider')
+                .append($('<img src="' + ICON_PATH + ICON_NAMES.chevron + '"/>'));
             container.append(divider);
         }
     }
 }
 
 function createCrumbLink(level, text) {
-    var newCrumb = $("<a/>");
-    newCrumb.addClass('breadcrumb-link');
-    newCrumb.attr('level', level);
-    newCrumb.text(text);
-    return newCrumb;
+    return newCrumb = $("<a/>")
+        .addClass('breadcrumb-link')
+        .addClass('nav-button')
+        .attr('data-level', level)
+        .text(text);
 }
 
 function navigateToCrumb(e) {
-    if(!$(e.target).attr('level')) {
+    var level = $(e.target).data('level');
+    if(level === false) {
         return;
     }
-    var level = $(e.target).attr('level');
-
     if(level == 0) {
         navigateToPath('/');
         return;
@@ -121,8 +121,8 @@ function generateListItem(data) {
     link.append($('<span class="file-name">' + data.name + '</span>'));
 
     if(data.isFolder) {
-        link.attr('is-folder', true);
-        link.attr('folder-name', data.name);
+        link.attr('data-is-folder', true)
+            .attr('data-folder-name', data.name);
     }
     else if (data.size) {
         var formattedSize = formatFileSize(data.size);
@@ -179,9 +179,9 @@ function navigateIntoFolder(e) {
         return;
     }
     var folderLink = $(e.target);
-    if(folderLink.attr('is-folder')) {
+    if(folderLink.data('is-folder')) {
         var newPath = CURRENT_PATH;
-        var folder = folderLink.attr('folder-name');
+        var folder = folderLink.data('folder-name');
         if(newPath == '/') {
             newPath += folder;
         }
