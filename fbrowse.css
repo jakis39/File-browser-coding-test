@@ -42,12 +42,12 @@ header {
   margin-top: 0.2em;
 }
 
-.title {
+h1 {
   font-size: 1.1em;
   font-weight: bold;
   float: left;
   line-height: 2em;
-  margin-left: 0.5em;
+  margin: 0 0 0 0.5em;
 }
 
 .nav-button {
@@ -70,6 +70,11 @@ header {
 
 .nav-button-icon {
   max-height: 1.2em;
+}
+
+#breadcrumb-container {
+  position: relative;
+  margin-left: 2em;
 }
 
 .breadcrumb-link {
@@ -148,13 +153,52 @@ header {
 .file-icon {
   max-height: 1.5em;
   vertical-align: middle;
+  margin-left: 0.1em;
 }
 
 .file-name {
   margin-left: 1em;
   line-height: 2em;
 }
+
 .file-size {
   float: right;
   color: #aaa;
+}
+
+
+/* Responsive rules */
+
+@media screen and (max-width: 420px),
+  screen and (max-height: 420px) {
+
+  #container {
+    margin: 0;
+    border: none;
+  }
+
+  /* Files window */
+
+  .file-row a {
+    overflow: auto;
+    padding: 0.7em 0.3em 0.6em 0.3em;
+  }
+
+  .file-icon {
+    float:left;
+  }
+
+  .file-name {
+    margin-left: 0.6em;
+    float: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 85%;
+    overflow: hidden;
+  }
+
+  .file-size {
+    display: none;
+  }
+
 }
