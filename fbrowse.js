@@ -42,7 +42,6 @@ function navigateToPath(path) {
             CURRENT_PATH = path;
             buildFileList(files);
             buildBreadcrumbNav();
-            $("#log-output").text('');
         }
     });
 }
